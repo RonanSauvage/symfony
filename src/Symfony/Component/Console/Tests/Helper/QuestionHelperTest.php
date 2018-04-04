@@ -107,6 +107,10 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
             $this->markTestSkipped('`stty` is required to test autocomplete functionality');
         }
 
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            $this->markTestSkipped('Autocompletion is not supported on Windows');
+        }
+
         // Acm<NEWLINE>
         // Ac<BACKSPACE><BACKSPACE>s<TAB>Test<NEWLINE>
         // <NEWLINE>
@@ -140,6 +144,10 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
             $this->markTestSkipped('`stty` is required to test autocomplete functionality');
         }
 
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            $this->markTestSkipped('Autocompletion is not supported on Windows');
+        }
+
         // <UP ARROW><UP ARROW><NEWLINE><DOWN ARROW><DOWN ARROW><NEWLINE>
         $inputStream = $this->getInputStream("\033[A\033[A\n\033[B\033[B\n");
 
@@ -157,6 +165,10 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
     {
         if (!$this->hasSttyAvailable()) {
             $this->markTestSkipped('`stty` is required to test autocomplete functionality');
+        }
+
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            $this->markTestSkipped('Autocompletion is not supported on Windows');
         }
 
         $inputStream = $this->getInputStream('E');
